@@ -1,0 +1,62 @@
+<!-- THE DEFAULT VIEW OF TODO APP -->
+<div class="container">
+    <!-- TODO SEARCH -->
+    <div class="row add-space-to-bottom">
+        <div class="col-sm-4 col-sm-offset-4">
+            <input type="search" class="form-control input-sm" 
+                placeholder="Search todos" ng-model="searchText"> 
+        </div>
+    </div>
+
+    <!-- TODO LIST -->
+    <div id="todo-list" class="row add-space-to-bottom">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <!-- LOOP OVER THE TODOS IN $scope.todos -->
+            <div class="checkbox" ng-repeat="todo in todos | filter: searchText">
+                <label>
+                    <input type="checkbox" 
+                            ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                </label>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TODO COUNT -->
+    <div class="row add-space-to-bottom">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <h4>Count: <span class="label label-info">{{ todos.length }}</span></h4>
+        </div>
+    </div>
+
+    <!-- FORM TO CREATE TODOS -->
+    <div id="todo-form" class="row add-space-to-bottom">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form name="todoForm" ng-submit="createTodo()" novalidate>
+                <div class="form-group"
+                        ng-class="{ 'has-error': todoForm.todoText.$error.required && !todoForm.todoText.$pristine }">
+                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                    <input type="text" 
+                            id="todoText"
+                            name="todoText"
+                            class="form-control input-lg text-center"
+                            placeholder="Enter todo task" 
+                            ng-model="formData.text"
+                            required>
+                    <span ng-show="todoForm.todoText.$error.required && !todoForm.todoText.$pristine" 
+                            class="help-block">
+                        Todo text is required.
+                    </span>
+                </div>
+
+                <!-- createToDo() WILL CREATE NEW TODOS -->
+                <button type="submit" 
+                        class="btn btn-primary btn-lg" 
+                        ng-disabled="todoForm.$invalid">
+                    Add
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

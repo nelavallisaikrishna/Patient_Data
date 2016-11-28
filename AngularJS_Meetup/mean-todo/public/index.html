@@ -1,0 +1,59 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="todoApp">
+<head>
+    <!-- META -->
+    <!-- Optimize mobile viewport -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MEAN Todo App</title>
+
+    <!-- Load Bootstrap and Todo App sytlesheets -->
+    <link rel="stylesheet" href="./styles/bootstrap.css">
+    <link rel="stylesheet" href="./styles/todoStyles.css">
+
+    <!-- Load Angular -->
+    <script src="./scripts/ng/angular.js"></script>
+    <script src="./scripts/ng/angular-route.js"></script>
+    
+    <!-- Load Todo App scripts -->
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/controllers/headerController.js"></script>
+    <script src="./scripts/controllers/mainController.js"></script>
+    <script src="./scripts/controllers/aboutController.js"></script>
+    <script src="./scripts/services/todoService.js"></script>
+    <script src="./scripts/services/logService.js"></script>
+
+</head>
+
+<body>
+    <header ng-controller="HeaderController">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Todo App</a>
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{ active: isActive('/') }"><a href="#/">Home</a></li>
+                        <li ng-class="{ active: isActive('/about') }"><a href="#/about">About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="jumbotron text-center">
+            <h1>Todo App</h1>
+        </div>
+
+    </div>
+
+    <div ng-view></div>
+
+</body>
+</html>
